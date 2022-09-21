@@ -1,5 +1,5 @@
 let buttons = document.getElementsByClassName("drum");
-console.log(buttons);
+// console.log(buttons);
 
 for (let i = 0; i <= buttons.length; i++) {
   //Checking whether the button exists or not, to avoid type error
@@ -10,11 +10,12 @@ for (let i = 0; i <= buttons.length; i++) {
 
 function handleClick() {
   //changing style of clicked button
-  this.style.color = "#fff";
+  //this.style.color = "#fff";
 
   let button = this.innerHTML;
 
   soundPlayer(button);
+  buttonAnimation(button);
 }
 
 //-- Key board event
@@ -22,8 +23,9 @@ function handleClick() {
 //keyboard events are listened at whole document
 document.addEventListener("keydown", function (e) {
   let key = e.key;
+
   soundPlayer(key);
-  console.log(`Key pressed: ${e.key}`);
+  buttonAnimation(key);
 });
 
 function soundPlayer(value) {
@@ -65,34 +67,12 @@ function soundPlayer(value) {
   }
 }
 
-// -- OOP Revision -- //
-// let housekeeper = {
-//   name: "Jamila",
-//   workedBefore: true,
-//   workDone: ["cleaning", "bedroom"],
-// };
+//-- Button Animation
+function buttonAnimation(value) {
+  buttonPressed = document.querySelector(`.${value}`);
+  buttonPressed.classList.add("pressed");
 
-// function cleanRoom() {
-//   console.log("I'm cleaning the room");
-// }
-
-// class HouseKeeper {
-//   constructor(name, age, experirience, work) {
-//     this.name = name;
-//     this.age = age;
-//     this.experirience = experirience;
-//     this.work = work;
-//   }
-
-//   displayInfo() {
-//     return `${this.name} is ${this.age} years old houskeeper who has been working for ${this.experirience} years.`;
-//   }
-
-//   clean() {
-//     cleanRoom();
-//   }
-// }
-
-// let housekeeper1 = new HouseKeeper("Kate", 24, 4, ["washing, cleaning"]);
-
-// housekeeper1.clean();
+  setTimeout(() => {
+    buttonPressed.classList.remove("pressed");
+  }, 200);
+}
