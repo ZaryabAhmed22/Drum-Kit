@@ -5,5 +5,8 @@ for (var i = 0; i <= buttons.length; i++) {
 }
 
 function handleClick() {
-  console.log("I'm clicked");
+  //changing style of clicked button
+  this.style.color = "#fff";
+  let playAudio = new Audio("sounds/tom-1.mp3");
+  playAudio.play();
 }
